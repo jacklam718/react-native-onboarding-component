@@ -4,4 +4,4 @@ Inspired by [Travel App Onboarding](https://dribbble.com/shots/3468934-Travel-Ap
 
 [Play with the design](https://framer.cloud/aEpss)
 
-<img src="https://cdn.dribbble.com/users/321434/screenshots/3468934/shot.gif">
+<img src="https://cdn.dribbble.com/users/321434/screenshots/3468934/shot.gif" width=600>
