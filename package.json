@@ -1,6 +1,6 @@
 {
-  "name": "react-native-app-onboarding",
-  "version": "0.0.1",
+  "name": "react-native-onboarding-component",
+  "version": "0.0.2",
   "description": "React Native App Onboarding component for IOS & Android.",
   "main": "dist/index.js",
   "scripts": {
@@ -19,6 +19,7 @@
     "react onboarding",
     "react-native",
     "react-native-app-onboarding",
+    "react-native-onboarding-component",
     "react-native-intro",
     "react native intro",
     "app-onboarding",
