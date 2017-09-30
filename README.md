@@ -1,7 +1,14 @@
-# React Native Viewpager Component
+# React Native App Onboarding Views
 
-Inspired by [Travel App Onboarding](https://dribbble.com/shots/3468934-Travel-App-Onboarding)
+<img src="https://raw.githubusercontent.com/jacklam718/react-native-app-onboarding/master/.github/app-onboarding.gif" width="300">
 
-[Play with the design](https://framer.cloud/aEpss)
+# Installation
+`yarn add react-native-app-onboarding`
 
-<img src="https://cdn.dribbble.com/users/321434/screenshots/3468934/shot.gif" width=600>
+# Demo
+[Try with Exponent](https://exp.host/@jacklam718/App)
+
+[Example](https://github.com/jacklam718/react-native-button-component/blob/master/rreact-native-app-onboarding/App.js)
+
+# For contributor
+Pull request are welcomed. Please follow [Airbnb JS Style Guide](https://github.com/airbnb/javascript)
