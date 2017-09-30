@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "App onboarding example",
+    "name": "react-native-app-onboarding-demo",
     "description": "An empty new project",
-    "slug": "App onboarding example",
+    "slug": "react-native-app-onboarding-demo",
     "privacy": "public",
     "sdkVersion": "21.0.0",
     "version": "1.0.0",

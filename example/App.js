@@ -18,7 +18,7 @@ import {
   Actions,
   ContentContainer,
   GradientBackgrounds,
-} from 'react-native-app-onboarding';
+} from 'react-native-onboarding-component';
 
 // import ViewPager from './src/ViewPager';
 const { width: deviceWidth, height: deviceHeight } = Dimensions.get('window');

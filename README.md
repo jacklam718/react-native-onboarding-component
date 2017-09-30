@@ -6,7 +6,7 @@
 `yarn add react-native-onboarding-component`
 
 # Demo
-[Try with Exponent](https://exp.host/@jacklam718/App)
+[Try with Exponent](https://expo.io/@jacklam718/react-native-app-onboarding-demo)
 
 [Example](https://github.com/jacklam718/react-native-onboarding-component/blob/master/example/App.js)
 
