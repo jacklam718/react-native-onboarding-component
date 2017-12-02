@@ -37,7 +37,6 @@ export default class GradientBackgrounds extends PureComponent {
 
   render() {
     const { style, colors } = this.props;
-    console.log('colors: ', colors);
     return (
       <View style={[styles.container, style]}>
         {colors.map((color, index) => (

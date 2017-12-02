@@ -37,9 +37,8 @@ scrollX:props.scrollX};return _this;
 
 {var _this2=this;var _props=
 this.props,style=_props.style,colors=_props.colors;
-console.log('colors: ',colors);
 return(
-_react2.default.createElement(_reactNative.View,{style:[styles.container,style],__source:{fileName:_jsxFileName,lineNumber:42}},
+_react2.default.createElement(_reactNative.View,{style:[styles.container,style],__source:{fileName:_jsxFileName,lineNumber:41}},
 colors.map(function(color,index){return(
 _react2.default.createElement(_reactNative.Animated.View,{
 key:'gb-'+index,
@@ -49,7 +48,7 @@ backgroundColor:color,
 zIndex:-index,
 opacity:_this2.state.scrollX.interpolate({
 inputRange:[deviceWidth*index,deviceWidth*(index+1)],
-outputRange:isAdroid?[1,2]:[1,0]})}),__source:{fileName:_jsxFileName,lineNumber:44}}));})));
+outputRange:isAdroid?[1,2]:[1,0]})}),__source:{fileName:_jsxFileName,lineNumber:43}}));})));
 
 
 
