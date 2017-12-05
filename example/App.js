@@ -139,6 +139,7 @@ export default class App extends Component {
                 <Card
                   scrollX={this.scrollX}
                   index={index}
+                  style={{ borderRadius: 0 }}
                 >
                   <Lottie
                     ref={(animation) => {
