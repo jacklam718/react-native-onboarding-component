@@ -2,15 +2,12 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Image,
   StyleSheet,
-  Button,
-  Platform,
   Animated,
   Dimensions,
-  TouchableOpacity,
   StatusBar,
 } from 'react-native';
+import { DangerZone } from 'expo';
 
 import {
   Card,
@@ -20,29 +17,30 @@ import {
   GradientBackgrounds,
 } from 'react-native-onboarding-component';
 
-// import ViewPager from './src/ViewPager';
-const { width: deviceWidth, height: deviceHeight } = Dimensions.get('window');
+const { Lottie } = DangerZone;
+
+const { width: deviceWidth } = Dimensions.get('window');
 
 const pages = [{
   title: 'Cheap Travel',
   description: 'Save money on your trip by finding the best priced flight tickets available.',
   backgroundColor: '#111ED5',
-  image: require('./cheap_travel.png'),
+  source: require('./motorcycle.json'),
 }, {
   title: 'Amazing hotels',
   description: 'Make sure you stay in the best hotels for the best prices that are available.',
   backgroundColor: '#1468FF',
-  image: require('./amazing_hotels.png'),
+  source: require('./happy_birthday.json'),
 }, {
   title: 'Go everywhere',
   description: 'See everywhere without having to worry about planning and transportation.',
   backgroundColor: '#F14C2B',
-  image: require('./go_everywhere.png'),
+  source: require('./moving_bus.json'),
 }, {
   title: 'Stay warm',
   description: "Don't like the cold wheather? We guarantee you a sunny and warm vacation.",
   backgroundColor: '#FFA11C',
-  image: require('./stay_warm.png'),
+  source: require('./mailsent.json'),
 }];
 
 const styles = StyleSheet.create({
@@ -56,21 +54,60 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: 'transparent',
   },
+  lottie: {
+    width: '100%',
+    height: '100%',
+  },
+  title: {
+    fontSize: 26,
+    fontWeight: '300',
+    marginBottom: 30,
+    color: 'black',
+  },
+  description: {
+    fontWeight: '300',
+    color: 'black',
+    textAlign: 'center',
+  },
 });
 
 export default class App extends Component {
-  scrollX = new Animated.Value(0);
+  constructor(props) {
+    super(props);
 
-  scrollTo = (x) => {
+    this.state = {
+      currentIndex: 0,
+    };
+    this.scrollX = new Animated.Value(0);
+    this.animations = new Map();
+  }
+
+  componentDidMount() {
+    this.animations.get(this.state.currentIndex).play();
+  }
+
+  onScroll = (event) => {
+    const { contentOffset } = event.nativeEvent;
+    const currentIndex = Math.round(contentOffset.x / deviceWidth);
+    if (this.state.currentIndex !== currentIndex) {
+      this.animations.forEach((animation) => {
+        animation.reset();
+      });
+      this.animations.get(currentIndex).play();
+      this.setState({ currentIndex });
+    }
+  }
+
+  scrollTo = (index) => {
     this.scrollView._component.scrollTo({
-      x,
+      x: (deviceWidth * index),
       animated: true,
     });
   }
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.container}>
         <StatusBar
           backgroundColor="blue"
           barStyle="light-content"
@@ -88,24 +125,37 @@ export default class App extends Component {
           scrollEventThrottle={1}
           onScroll={Animated.event(
             [{ nativeEvent: { contentOffset: { x: this.scrollX } } }],
-            { useNativeDriver: true },
+            { useNativeDriver: true,
+              listener: this.onScroll,
+            },
           )}
         >
           {pages.map((page, index) => (
-            <View style={[styles.card, { width: deviceWidth, flexDirection: 'column' }]} key={`pages-${index}`}>
+            <View
+              key={`pages-${index}`}
+              style={[styles.card, { width: deviceWidth, flexDirection: 'column' }]}
+            >
               <Header>
                 <Card
                   scrollX={this.scrollX}
                   index={index}
                 >
-                  <Image source={page.image} style={{ flex: 1, borderRadius: 5 }} resizeMode={Image.resizeMode.contain} />
+                  <Lottie
+                    ref={(animation) => {
+                      if (animation) {
+                        this.animations.set(index, animation);
+                      }
+                    }}
+                    style={styles.lottie}
+                    source={page.source}
+                  />
                 </Card>
               </Header>
               <ContentContainer>
-                <Text style={{ fontSize: 26, fontWeight: '300', marginBottom: 30, color: 'black' }}>
+                <Text style={styles.title}>
                   {page.title}
                 </Text>
-                <Text style={{ fontWeight: '300', color: 'black', textAlign: 'center' }}>
+                <Text style={styles.description}>
                   {page.description}
                 </Text>
               </ContentContainer>
@@ -114,8 +164,8 @@ export default class App extends Component {
                   style: { color: page.backgroundColor },
                   title: 'Continue',
                   onPress: () => {
-                    const x = (index + 1 === pages.length) ? 0 : deviceWidth * (index + 1);
-                    this.scrollTo(x);
+                    const next = (index + 1 === pages.length) ? 0 : index + 1;
+                    this.scrollTo(next);
                   },
                 }]}
               />
