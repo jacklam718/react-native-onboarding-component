@@ -1,8 +1,6 @@
 # React Native App Onboarding Component
 
-<img src="https://raw.githubusercontent.com/jacklam718/react-native-onboarding-component/master/.github/onboarding-ios.gif" width="200">
-
-<img src="https://raw.githubusercontent.com/jacklam718/react-native-onboarding-component/master/.github/onboarding-android.gif" width="200">
+<img src="https://raw.githubusercontent.com/jacklam718/react-native-onboarding-component/master/.github/app-onboarding-ios.gif" width="200">
 
 # Installation
 `yarn add react-native-onboarding-component`
