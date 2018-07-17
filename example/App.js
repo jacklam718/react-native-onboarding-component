@@ -147,6 +147,7 @@ export default class App extends Component {
                         this.animations.set(index, animation);
                       }
                     }}
+                    loop={false}
                     style={styles.lottie}
                     source={page.source}
                   />

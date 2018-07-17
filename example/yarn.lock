@@ -3503,9 +3503,9 @@ react-native-maps@0.21.0:
     babel-plugin-module-resolver "^2.3.0"
     babel-preset-react-native "1.9.0"
 
-react-native-onboarding-component@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/react-native-onboarding-component/-/react-native-onboarding-component-0.0.3.tgz#e14f1448abf68e9c8e138c66ccb4868e8c090da8"
+react-native-onboarding-component@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/react-native-onboarding-component/-/react-native-onboarding-component-0.0.4.tgz#9bb2e50933ac906cd51ed8dc16adfe6b53061e31"
   dependencies:
     babel-plugin-flow-react-proptypes "^5.1.1"
     babel-preset-react-native-stage-0 "^1.0.1"
@@ -3619,9 +3619,9 @@ react-transform-hmr@^1.0.4:
     global "^4.3.0"
     react-proxy "^1.1.7"
 
-react@16.3.1:
-  version "16.3.1"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.3.1.tgz#4a2da433d471251c69b6033ada30e2ed1202cfd8"
+react@16.4.1:
+  version "16.4.1"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.4.1.tgz#de51ba5764b5dbcd1f9079037b862bd26b82fe32"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
