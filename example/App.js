@@ -47,12 +47,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  page: {
+    width: deviceWidth,
+    backgroundColor: 'transparent',
+    flexDirection: 'column',
+  },
   scrollView: {
     flex: 1,
     backgroundColor: 'white',
   },
   card: {
-    backgroundColor: 'transparent',
+    borderRadius: 0,
   },
   lottie: {
     width: '100%',
@@ -69,6 +74,9 @@ const styles = StyleSheet.create({
     color: 'black',
     textAlign: 'center',
   },
+  gradientBackground: {
+    height: '56%',
+  },
 });
 
 export default class App extends Component {
@@ -76,31 +84,35 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      currentIndex: 0,
+      currentPageIndex: 0,
     };
     this.scrollX = new Animated.Value(0);
-    this.animations = new Map();
+    this.lotties = new Map();
   }
 
   componentDidMount() {
-    this.animations.get(this.state.currentIndex).play();
+    this.lotties.get(this.state.currentPageIndex).play();
   }
 
   onScroll = (event) => {
     const { contentOffset } = event.nativeEvent;
-    const currentIndex = Math.round(contentOffset.x / deviceWidth);
-    if (this.state.currentIndex !== currentIndex) {
-      this.animations.forEach((animation) => {
-        animation.reset();
+    const currentPageIndex = Math.round(contentOffset.x / deviceWidth);
+    if (this.state.currentPageIndex !== currentPageIndex) {
+      // update currentPageIndex
+      this.setState({ currentPageIndex }, () => {
+        // reset all lottie animation
+        this.lotties.forEach((lottie) => { lottie.reset(); });
+        // play lottie animation for current page
+        this.lotties.get(currentPageIndex).play();
       });
-      this.animations.get(currentIndex).play();
-      this.setState({ currentIndex });
     }
   }
 
   scrollTo = (index) => {
+    const horizontalContentOffset = (deviceWidth * index);
+    // eslint-disable-next-line
     this.scrollView._component.scrollTo({
-      x: (deviceWidth * index),
+      x: horizontalContentOffset,
       animated: true,
     });
   }
@@ -112,11 +124,13 @@ export default class App extends Component {
           backgroundColor="blue"
           barStyle="light-content"
         />
+
         <GradientBackgrounds
           colors={pages.map(page => page.backgroundColor)}
           scrollX={this.scrollX}
-          style={{ height: '56%' }}
+          style={styles.gradientBackground}
         />
+
         <Animated.ScrollView
           horizontal
           ref={(scrollView) => { this.scrollView = scrollView; }}
@@ -132,20 +146,18 @@ export default class App extends Component {
         >
           {pages.map((page, index) => (
             <View
-              key={`pages-${index}`}
-              style={[styles.card, { width: deviceWidth, flexDirection: 'column' }]}
+              key={`page-${page.title}`}
+              style={styles.page}
             >
               <Header>
                 <Card
                   scrollX={this.scrollX}
                   index={index}
-                  style={{ borderRadius: 0 }}
+                  style={styles.card}
                 >
                   <Lottie
-                    ref={(animation) => {
-                      if (animation) {
-                        this.animations.set(index, animation);
-                      }
+                    ref={(lottie) => {
+                      this.lotties.set(index, lottie);
                     }}
                     loop={false}
                     style={styles.lottie}
@@ -153,6 +165,7 @@ export default class App extends Component {
                   />
                 </Card>
               </Header>
+
               <ContentContainer>
                 <Text style={styles.title}>
                   {page.title}
@@ -161,13 +174,14 @@ export default class App extends Component {
                   {page.description}
                 </Text>
               </ContentContainer>
+
               <Actions
                 actions={[{
                   style: { color: page.backgroundColor },
                   title: 'Continue',
                   onPress: () => {
-                    const next = (index + 1 === pages.length) ? 0 : index + 1;
-                    this.scrollTo(next);
+                    const nextIndex = (index + 1 === pages.length) ? 0 : index + 1;
+                    this.scrollTo(nextIndex);
                   },
                 }]}
               />
