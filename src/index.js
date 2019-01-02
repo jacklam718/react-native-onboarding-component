@@ -1,5 +1,5 @@
 export Card from './Card';
 export Header from './Header';
-export Actions from './Actions';
+export NextButton from './NextButton';
 export ContentContainer from './ContentContainer';
 export GradientBackgrounds from './GradientBackgrounds';

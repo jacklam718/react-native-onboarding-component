@@ -12,7 +12,7 @@ import { DangerZone } from 'expo';
 import {
   Card,
   Header,
-  Actions,
+  NextButton,
   ContentContainer,
   GradientBackgrounds,
 } from 'react-native-onboarding-component';
@@ -98,11 +98,9 @@ export default class App extends Component {
     const { contentOffset } = event.nativeEvent;
     const currentPageIndex = Math.round(contentOffset.x / deviceWidth);
     if (this.state.currentPageIndex !== currentPageIndex) {
-      // update currentPageIndex
+      const previousPageIndex = this.state.currentPageIndex;
       this.setState({ currentPageIndex }, () => {
-        // reset all lottie animation
-        this.lotties.forEach((lottie) => { lottie.reset(); });
-        // play lottie animation for current page
+        this.lotties.get(previousPageIndex).reset();
         this.lotties.get(currentPageIndex).play();
       });
     }
@@ -175,15 +173,13 @@ export default class App extends Component {
                 </Text>
               </ContentContainer>
 
-              <Actions
-                actions={[{
-                  style: { color: page.backgroundColor },
-                  title: 'Continue',
-                  onPress: () => {
-                    const nextIndex = (index + 1 === pages.length) ? 0 : index + 1;
-                    this.scrollTo(nextIndex);
-                  },
-                }]}
+              <NextButton
+                title="Continue"
+                style={{ color: page.backgroundColor }}
+                onPress={() => {
+                  const nextIndex = (index + 1 === pages.length) ? 0 : index + 1;
+                  this.scrollTo(nextIndex);
+                }}
               />
             </View>
           ))}
