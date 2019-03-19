@@ -1,15 +1,9 @@
 {
-  "extends": "airbnb",
+  "extends": ["airbnb-base", "plugin:react/recommended"],
   "parser": "babel-eslint",
-  "ecmaFeatures": {
-    "jsx": true
-  },
-  "env": {
-    "es6": true
-  },
   "plugins": [
-    "react",
-    "jsx-a11y"
+    "flowtype",
+    "react"
   ],
   "rules": {
     "global-require": 0,

@@ -80,39 +80,45 @@ const styles = StyleSheet.create({
 });
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
+  state = {
+    currentPageIndex: 0,
+  };
 
-    this.state = {
-      currentPageIndex: 0,
-    };
-    this.scrollX = new Animated.Value(0);
-    this.lotties = new Map();
-  }
+  scrollX = new Animated.Value(0);
+
+  lotties = new Map();
 
   componentDidMount() {
-    this.lotties.get(this.state.currentPageIndex).play();
+    this.playLottie(this.state.currentPageIndex);
   }
 
   onScroll = (event) => {
+    const { currentPageIndex } = this.state;
     const { contentOffset } = event.nativeEvent;
-    const currentPageIndex = Math.round(contentOffset.x / deviceWidth);
-    if (this.state.currentPageIndex !== currentPageIndex) {
-      const previousPageIndex = this.state.currentPageIndex;
-      this.setState({ currentPageIndex }, () => {
-        this.lotties.get(previousPageIndex).reset();
-        this.lotties.get(currentPageIndex).play();
+    const nextPageIndex = Math.round(contentOffset.x / deviceWidth);
+    if (currentPageIndex !== nextPageIndex) {
+      this.setState({ currentPageIndex: nextPageIndex }, () => {
+        this.resetLottie(currentPageIndex);
+        this.playLottie(nextPageIndex);
       });
     }
   }
 
-  scrollTo = (index) => {
+  scrollTo(index) {
     const horizontalContentOffset = (deviceWidth * index);
     // eslint-disable-next-line
     this.scrollView._component.scrollTo({
       x: horizontalContentOffset,
       animated: true,
     });
+  }
+
+  resetLottie(index) {
+    this.lotties.get(index).reset();
+  }
+
+  playLottie(index) {
+    this.lotties.get(index).play();
   }
 
   render() {
@@ -137,7 +143,8 @@ export default class App extends Component {
           scrollEventThrottle={1}
           onScroll={Animated.event(
             [{ nativeEvent: { contentOffset: { x: this.scrollX } } }],
-            { useNativeDriver: true,
+            {
+              useNativeDriver: true,
               listener: this.onScroll,
             },
           )}

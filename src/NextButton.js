@@ -7,7 +7,7 @@ import {
   Text,
   StyleSheet,
   Platform,
-  Dimensions
+  Dimensions,
 } from 'react-native';
 
 const { width: WINDOW_WIDTH, height: WINDOW_HEIGHT } = Dimensions.get('window');

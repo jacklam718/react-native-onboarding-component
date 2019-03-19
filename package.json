@@ -28,26 +28,27 @@
     "android"
   ],
   "dependencies": {
-    "babel-plugin-flow-react-proptypes": "^5.1.1",
+    "babel-plugin-flow-react-proptypes": "^25.0.0",
     "babel-preset-react-native-stage-0": "^1.0.1",
-    "prop-types": "^15.5.8"
+    "prop-types": "^15.7.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-eslint": "^7.2.3",
-    "babel-jest": "20.0.3",
-    "babel-preset-react-native": "^3.0.1",
-    "eslint": "^4.5.0",
-    "eslint-config-airbnb": "^15.1.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.3.0",
-    "flow-bin": "^0.53.1",
-    "jest": "^20.0.4",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "24.1.0",
+    "babel-preset-react-native": "^4.0.1",
+    "eslint": "^5.13.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-flowtype": "^3.4.1",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "flow-bin": "^0.93.0",
+    "jest": "^24.1.0",
     "jest-react-native": "^18.0.0",
-    "react": "^15.6.1",
-    "react-native": "0.42",
-    "react-test-renderer": "^15.6.1",
-    "rimraf": "^2.6.1"
+    "react": "^16.8.1",
+    "react-native": "0.58.4",
+    "react-test-renderer": "^16.8.1",
+    "rimraf": "^2.6.3"
   }
 }
